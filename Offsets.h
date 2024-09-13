@@ -19,7 +19,6 @@ namespace Offsets
 	inline uint64_t Names = 0x5B8;
 	inline uint64_t RootComponent = 0x3C8;
 	inline uint64_t DescriptiveName = 0x10E0;
-	inline uint64_t isNPC = 0x268;
 }
 
 namespace Globals
