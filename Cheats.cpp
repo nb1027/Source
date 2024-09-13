@@ -53,18 +53,12 @@ void Cheats::Run()
 
 			Vector3 ScreenPos = WorldToScreen(WorldPos, CameraCache.POV.Location, CameraCache.POV.Rotation, CameraCache.POV.FOV);
 			if (ScreenPos.x == 0) continue;
-
-			int isNPC = static_cast<int>(Read<float>(CurrentActor + Offsets::isNPC));
-			if (isNPC == 0)
-				continue;
-
-			if (isNPC == 26) // Players and dinos have value of 26
-			{
-				uint64_t PrimalNameAddr = Read<uint64_t>(CurrentActor + Offsets::DescriptiveName);
-				std::string PrimalName = read_stringRPM<uint64_t>(PrimalNameAddr);
-				if (PrimalName != "")
-					std::cout << PrimalName << std::endl; //if it is a player, the primalname will be: PrimalCharacter. player name can then be found from PlayerState
-			}
+			
+			uint64_t PrimalNameAddr = Read<uint64_t>(CurrentActor + Offsets::DescriptiveName);
+			std::string PrimalName = read_stringRPM<uint64_t>(PrimalNameAddr);
+			if (PrimalName != "")
+				std::cout << PrimalName << std::endl; //if it is a player, the primalname will be: PrimalCharacter. player name can then be found from PlayerState
+			
 
 			//Draw, definitely need more information but thank god the game comes with pdb, mostly everything you could need comes off classes inherited from
 			// AActor. Example: Health is in a class inherited from AActor so Health = Read(AActor + Offset)
